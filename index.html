@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Admission Registration Form</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <h1>Student Admission Registration</h1>
+  <p>Fill in your details below to apply for admission</p>
+</header>
+
+<main class="container">
+
+  <form id="admissionForm" novalidate>
+
+    <!-- Step indicator -->
+    <div class="steps">
+      <div class="step active" data-step="1">1. Personal</div>
+      <div class="step" data-step="2">2. Address</div>
+      <div class="step" data-step="3">3. Course</div>
+      <div class="step" data-step="4">4. Review</div>
+    </div>
+
+    <!-- STEP 1: Personal Details -->
+    <section class="form-step" id="stepPersonal">
+      <h2>Personal Details</h2>
+
+      <div class="field">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" placeholder="Enter your full name">
+        <span class="error" id="err-fullName"></span>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob">
+          <span class="error" id="err-dob"></span>
+        </div>
+        <div class="field">
+          <label for="gender">Gender</label>
+          <select id="gender">
+            <option value="">Select</option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+            <option value="Other">Other</option>
+          </select>
+          <span class="error" id="err-gender"></span>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="name@example.com">
+          <span class="error" id="err-email"></span>
+        </div>
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="10-digit mobile number" maxlength="10">
+          <span class="error" id="err-phone"></span>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="btn-primary next-btn" data-next="2">Next</button>
+      </div>
+    </section>
+
+    <!-- STEP 2: Address -->
+    <section class="form-step hidden" id="stepAddress">
+      <h2>Address Details</h2>
+
+      <div class="address-columns">
+        <div></div>
+        <div class="col-title">Residential Address</div>
+        <div class="col-title">Permanent Address</div>
+
+        <input type="checkbox" id="c1" checked>
+        <input type="text" id="r1" placeholder="Address line 1">
+        <input type="text" id="p1" placeholder="Address line 1">
+
+        <input type="checkbox" id="c2" checked>
+        <input type="text" id="r2" placeholder="Address line 2">
+        <input type="text" id="p2" placeholder="Address line 2">
+
+        <input type="checkbox" id="c3" checked>
+        <input type="text" id="r3" placeholder="City">
+        <input type="text" id="p3" placeholder="City">
+
+        <input type="checkbox" id="c4" checked>
+        <input type="text" id="r4" placeholder="State and Pincode">
+        <input type="text" id="p4" placeholder="State and Pincode">
+      </div>
+
+      <p class="hint">Tick the lines you want, then use the arrow buttons to copy.</p>
+
+      <div class="btn-row copy-row">
+        <button type="button" id="copySelected">&#8594; Copy Selected</button>
+        <button type="button" id="copyAll">&#187; Copy All</button>
+        <button type="button" id="clearPermanent">Clear Permanent</button>
+      </div>
+
+      <p id="copyStatus"></p>
+
+      <span class="error" id="err-address"></span>
+
+      <div class="btn-row">
+        <button type="button" class="btn-secondary prev-btn" data-prev="1">Back</button>
+        <button type="button" class="btn-primary next-btn" data-next="3">Next</button>
+      </div>
+    </section>
+
+    <!-- STEP 3: Course -->
+    <section class="form-step hidden" id="stepCourse">
+      <h2>Course Details</h2>
+
+      <div class="field">
+        <label for="course">Course Applying For</label>
+        <select id="course">
+          <option value="">Select a course</option>
+          <option value="B.E Computer Science">B.E Computer Science</option>
+          <option value="B.E Electronics">B.E Electronics</option>
+          <option value="B.Tech IT">B.Tech IT</option>
+          <option value="B.Com">B.Com</option>
+          <option value="BBA">BBA</option>
+        </select>
+        <span class="error" id="err-course"></span>
+      </div>
+
+      <div class="field">
+        <label for="tenthPercent">10th Percentage</label>
+        <input type="number" id="tenthPercent" placeholder="e.g. 85" min="0" max="100">
+        <span class="error" id="err-tenthPercent"></span>
+      </div>
+
+      <div class="field">
+        <label for="twelfthPercent">12th Percentage</label>
+        <input type="number" id="twelfthPercent" placeholder="e.g. 80" min="0" max="100">
+        <span class="error" id="err-twelfthPercent"></span>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="btn-secondary prev-btn" data-prev="2">Back</button>
+        <button type="button" class="btn-primary next-btn" data-next="4">Next</button>
+      </div>
+    </section>
+
+    <!-- STEP 4: Review -->
+    <section class="form-step hidden" id="stepReview">
+      <h2>Review Your Application</h2>
+
+      <div class="review-box" id="reviewBox"></div>
+
+      <div class="btn-row">
+        <button type="button" class="btn-secondary prev-btn" data-prev="3">Back</button>
+        <button type="submit" class="btn-primary" id="submitBtn">Submit Application</button>
+      </div>
+    </section>
+
+  </form>
+
+  <div class="success-box hidden" id="successBox">
+    <h2>Application Submitted</h2>
+    <p>Your admission form has been submitted successfully.</p>
+    <button type="button" class="btn-primary" id="restartBtn">Fill Another Form</button>
+  </div>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
